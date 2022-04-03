@@ -1,0 +1,34 @@
+name: "Unit tests"
+
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+        branches: [ main ]
+
+jobs:
+    static-analysis-phpstan:
+        name: Static Analysis (psalm)
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                php-version:
+                    - 8.0
+                    - 8.1
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Install PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  coverage: none
+                  php-version: ${{ matrix.php-version }}
+
+            - name: Install dependencies with composer
+              run: composer install --no-interaction --no-progress --no-suggest
+
+            - name: Run PHPUnit
+              run: ./vendor/bin/phpunit --testdox tests
