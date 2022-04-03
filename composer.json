@@ -1,5 +1,6 @@
 {
     "name": "bafs/crc-php",
+    "license": "MIT",
     "authors": [
         {
             "name": "BafS",
