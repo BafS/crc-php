@@ -2,6 +2,12 @@
 
 Flexible implementation of cyclic redundancy check (CRC) in PHP 8.0+.
 
+## Install
+
+```
+composer require bafs/crc-php
+```
+
 ## Usage
 
 ### Basic Usage
@@ -22,7 +28,7 @@ You can generate the table with `Encoder::generateTable()`.
 ```php
 $encoder = CrcFactory::create(CrcFactory::CRC24_OPENPGP);
 
-print_r($encoder->generateTable()); // [0x0, 0x864cfb, 0x8ad50d, 0xc99f6, 0x93e6e1, 0x15aa1a, 0x1933ec, ...]
+print_r($encoder->generateTable()); // [0x0, 0x864cfb, 0x8ad50d, 0xc99f6, 0x93e6e1, 0x15aa1a, ...]
 ```
 
 You can see an example with a nicer output in `examples/generate-table.php`.
