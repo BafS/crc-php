@@ -1,0 +1,30 @@
+{
+    "name": "bafs/crc-php",
+    "authors": [
+        {
+            "name": "BafS",
+            "email": "fabacrans@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "BafS\\Crc\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BafS\\Crc\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=8.0"
+    },
+    "require-dev": {
+        "vimeo/psalm": "^4.22",
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "unit": "phpunit --testdox --color tests",
+        "quality": "psalm"
+    }
+}
