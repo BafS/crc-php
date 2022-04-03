@@ -11,12 +11,12 @@ namespace BafS\Crc;
 class Parameters
 {
     public function __construct(
-        public int $width = 32,
-        public int $poly = 0x04c11db7,
-        public int $init = 0x00000000,
+        public int $width,
+        public int $poly,
+        public int $init,
         public bool $reflectIn = false,
         public bool $reflectOut = false,
-        public int $xorOutput = 0x000000,
+        public int $xorOutput = 0x0,
     ) {
     }
 
