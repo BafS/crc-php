@@ -1,6 +1,6 @@
 # CRC-PHP
 
-Flexible implementation of cyclic redundancy check (CRC) in PHP 8.0+.
+Flexible implementation of cyclic redundancy check (CRC) in PHP 8.1+.
 
 ## Install
 
@@ -15,7 +15,7 @@ composer require bafs/crc-php
 Example using CRC24/OPENPGP
 
 ```php
-$encoder = CrcFactory::create(CrcFactory::CRC24_OPENPGP);
+$encoder = CrcFactory::create(CrcType::CRC24_OPENPGP);
 echo dechex($encoder->compute('test')); // f86ed0
 ```
 
@@ -26,7 +26,7 @@ It is recommended to use [memoization](https://en.wikipedia.org/wiki/Memoization
 You can generate the table with `Encoder::generateTable()`.
 
 ```php
-$encoder = CrcFactory::create(CrcFactory::CRC24_OPENPGP);
+$encoder = CrcFactory::create(CrcType::CRC24_OPENPGP);
 
 print_r($encoder->generateTable()); // [0x0, 0x864cfb, 0x8ad50d, 0xc99f6, 0x93e6e1, 0x15aa1a, ...]
 ```
@@ -38,7 +38,7 @@ You should set this table during the bootstrapping of your application and/or in
 ```php
 // Bootstrap
 $table = [0x0, 0x864cfb, 0x8ad50d, 0xc99f6, 0x93e6e1, 0x15aa1a, 0x1933ec, 0x9f7f17, 0xa18139, ...];
-$encoder = CrcFactory::create(CrcFactory::CRC24_OPENPGP, $table);
+$encoder = CrcFactory::create(CrcType::CRC24_OPENPGP, $table);
 
 // Encoder will use the table to compute the hash
 echo dechex($encoder->compute('test')); // f86ed0
