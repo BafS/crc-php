@@ -18,14 +18,14 @@
         }
     },
     "require": {
-        "php": ">=8.0"
+        "php": ">=8.1"
     },
     "require-dev": {
-        "vimeo/psalm": "^4.22",
-        "phpunit/phpunit": "^9.5"
+        "vimeo/psalm": "^5.0 || ^6.0",
+        "phpunit/phpunit": "^10"
     },
     "scripts": {
-        "unit": "phpunit --testdox --color tests",
+        "unit": "phpunit --testdox --display-deprecations --color tests",
         "quality": "psalm"
     }
 }

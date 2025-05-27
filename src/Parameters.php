@@ -7,16 +7,17 @@ namespace BafS\Crc;
 /**
  * @psalm-immutable
  * @psalm-readonly
+ * @final
  */
 class Parameters
 {
     public function __construct(
-        public int $width,
-        public int $poly,
-        public int $init,
-        public bool $reflectIn = false,
-        public bool $reflectOut = false,
-        public int $xorOutput = 0x0,
+        public readonly int $width,
+        public readonly int $poly,
+        public readonly int $init,
+        public readonly bool $reflectIn = false,
+        public readonly bool $reflectOut = false,
+        public readonly int $xorOutput = 0x0,
     ) {
     }
 

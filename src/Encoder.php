@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace BafS\Crc;
 
+/** @final */
 class Encoder implements EncoderInterface
 {
     /** @var array<int, int>|null */
     private ?array $lookupTable = null;
-    private int $mask;
-    private int $highBit;
+    private readonly int $mask;
+    private readonly int $highBit;
 
-    public function __construct(protected Parameters $parameters)
+    public function __construct(protected readonly Parameters $parameters)
     {
         $highBit = 1 << ($this->parameters->width - 1);
         $this->mask = (($highBit - 1) << 1) | 1;
