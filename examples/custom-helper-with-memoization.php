@@ -1,6 +1,7 @@
 <?php
 
 use BafS\Crc\CrcFactory;
+use BafS\Crc\CrcType;
 use BafS\Crc\EncoderInterface;
 
 /**
@@ -55,7 +56,7 @@ class Crc24OpenPGP
 
     public function __construct()
     {
-        $this->encoder = CrcFactory::create(CrcFactory::CRC24_OPENPGP, self::TABLE);
+        $this->encoder = CrcFactory::create(CrcType::CRC24_OPENPGP, self::TABLE);
     }
 
     public function calculate(string $buffer): int
