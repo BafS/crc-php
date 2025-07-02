@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use BafS\Crc\CrcFactory;
+use BafS\Crc\CrcType;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -33,10 +34,10 @@ $ruStart = getrusage();
 $startTime = microtime(true);
 
 for ($i = ROUNDS; $i--;) {
-    CrcFactory::create(CrcFactory::CRC16_BUYPASS)->compute($bytes8);
-    CrcFactory::create(CrcFactory::CRC32)->compute($bytes8);
-    CrcFactory::create(CrcFactory::CRC32)->compute($bytes10241024);
-    CrcFactory::create(CrcFactory::CRC24_OPENPGP)->compute($bytes1024);
+    CrcFactory::create(CrcType::CRC16_BUYPASS)->compute($bytes8);
+    CrcFactory::create(CrcType::CRC32)->compute($bytes8);
+    CrcFactory::create(CrcType::CRC32)->compute($bytes10241024);
+    CrcFactory::create(CrcType::CRC24_OPENPGP)->compute($bytes1024);
 }
 
 $endTime = microtime(true);
@@ -48,11 +49,11 @@ echo "\n";
 
 // ----------------------------------------------
 echo "------[ CRC computation WITH memoization ]------\n";
-$crc16 = CrcFactory::create(CrcFactory::CRC16_BUYPASS);
+$crc16 = CrcFactory::create(CrcType::CRC16_BUYPASS);
 $crc16->setTable($crc16->generateTable());
-$crc24 = CrcFactory::create(CrcFactory::CRC24_OPENPGP);
+$crc24 = CrcFactory::create(CrcType::CRC24_OPENPGP);
 $crc24->setTable($crc24->generateTable());
-$crc32 = CrcFactory::create(CrcFactory::CRC32);
+$crc32 = CrcFactory::create(CrcType::CRC32);
 $crc32->setTable($crc32->generateTable());
 
 $ruStart = getrusage();

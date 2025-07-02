@@ -1,11 +1,12 @@
 <?php
 
 use BafS\Crc\CrcFactory;
+use BafS\Crc\CrcType;
 use BafS\Crc\Encoder;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$params = CrcFactory::createParameters(CrcFactory::CRC24_OPENPGP);
+$params = CrcFactory::createParameters(CrcType::CRC24_OPENPGP);
 $table = (new Encoder($params))->generateTable();
 
 $acc = '';
@@ -16,4 +17,4 @@ foreach ($table as $n => $item) {
     }
 }
 
-echo '[' . trim($acc, "\n ,") . ']';
+echo '[' . trim($acc, "\n ,") . ']' . PHP_EOL;
