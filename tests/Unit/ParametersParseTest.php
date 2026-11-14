@@ -1,6 +1,8 @@
 <?php
 
-namespace BafS\Tests\Unit;
+declare(strict_types=1);
+
+namespace BafS\Crc\Tests\Unit;
 
 use BafS\Crc\CrcFactory;
 use BafS\Crc\CrcType;
@@ -46,7 +48,7 @@ final class ParametersParseTest extends TestCase
     #[DataProvider('wrongParametersDataProvider')]
     public function testFailParseString(string $toParse): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(\LogicException::class);
 
         Parameters::createFromString($toParse);
     }

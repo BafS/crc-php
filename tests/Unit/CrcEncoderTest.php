@@ -1,6 +1,8 @@
 <?php
 
-namespace BafS\Tests\Unit;
+declare(strict_types=1);
+
+namespace BafS\Crc\Tests\Unit;
 
 use BafS\Crc\CrcFactory;
 use BafS\Crc\CrcType;
@@ -59,7 +61,7 @@ final class CrcEncoderTest extends TestCase
                 $param = CrcFactory::createParameters($crcName);
 
                 foreach ($testDatas as $testData) {
-                    $name = json_encode($testData);
+                    $name = json_encode($testData, JSON_INVALID_UTF8_SUBSTITUTE | JSON_THROW_ON_ERROR);
                     if (strlen($name) >= 140) {
                         $name = substr($name, 0, 139) . '…';
                     }
