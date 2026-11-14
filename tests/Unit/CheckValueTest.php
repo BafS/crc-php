@@ -102,7 +102,7 @@ final class CheckValueTest extends TestCase
         yield 'CRC-40/GSM' => [new Parameters(40, 0x0004820009, 0x0, false, false, 0xffffffffff), 0xd4164fc646];
 
         // No catalogued 63-bit CRC: only checks that the table path matches the bitwise one at max width.
-        $max = new Parameters(PHP_INT_SIZE * 8 - 1, 0x1b, PHP_INT_MAX, true, true, 0x0);
+        $max = new Parameters(Parameters::MAX_WIDTH, 0x1b, PHP_INT_MAX, true, true, 0x0);
         yield 'max width consistency' => [$max, (new Encoder($max))->compute(self::CHECK_INPUT)];
     }
 }

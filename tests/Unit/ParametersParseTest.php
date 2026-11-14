@@ -43,6 +43,21 @@ final class ParametersParseTest extends TestCase
             'size=24 init=0x555555 poly=0x00065b refin=1 refout=1',
             CrcFactory::createParameters(CrcType::CRC24_BLE),
         ];
+
+        yield 'length alias' => [
+            'length=24 init=0x555555 poly=0x00065b refin=1 refout=1',
+            CrcFactory::createParameters(CrcType::CRC24_BLE),
+        ];
+
+        yield 'spaces around separators, multi-line' => [
+            "width = 24\npoly: 0x00065b\tinit=0x555555 refin=true refout=true",
+            CrcFactory::createParameters(CrcType::CRC24_BLE),
+        ];
+
+        yield 'long key names, decimal values' => [
+            'width=16 polynomial=4129 initial=0xffff refinput=false refoutput=false xoroutput=0xffff',
+            CrcFactory::createParameters(CrcType::CRC16_GENIBUS),
+        ];
     }
 
     #[DataProvider('wrongParametersDataProvider')]
@@ -59,5 +74,12 @@ final class ParametersParseTest extends TestCase
         yield ['init=0x555555  poly=0x00065b refin=true refout=true xorout=0x000000 check=0xc25a56 residue=0x000000 foo=bar name="CRC-24/BLE"'];
         yield ['size=true init=0x555555 poly=0x00065b'];
         yield ['size=24 init=0x555555'];
+        yield 'invalid hex' => ['width=8 poly=0xZZ init=0'];
+        yield 'non-integer width' => ['width=8.9 poly=7 init=0'];
+        yield 'invalid bool' => ['width=8 poly=7 init=0 refin=no'];
+        yield 'bool as xorout' => ['width=8 poly=7 init=0 xorout=true'];
+        yield 'width too large' => ['width=64 poly=0x1b init=0'];
+        yield 'overflowing decimal' => ['width=8 poly=99999999999999999999 init=0'];
+        yield 'overflowing hex' => ['width=8 poly=0xffffffffffffffffff init=0'];
     }
 }
